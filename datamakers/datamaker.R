@@ -3,8 +3,20 @@
 #the format of the meta and input elements should be defined in the README
 library(MASS)
 
-datamaker = function(seed,args){
 
+#inputs:
+#args is a list with the following elements:
+#n: total size of data (training + test set)
+#trainsize: size of training set
+#p: nuber of parameters ie. length of beta
+#betatrue: true coefficients beta
+#sigma: the standard deviation for the errors
+#xcov: the covariance function for the predictors X, which are generated from a multivariate normal with covariance matrix sigma
+#
+#returns a list with the following elements:
+#meta: a list with elements "testset" and "betatrue". testset is a n-trainsize by p+1 matrix with the first column being the y values 
+#input: the training set, a trainsize by p+1 matrix with the first column being the y values
+datamaker = function(seed,args){
 
   n=args$n
   trainsize=args$trainsize

@@ -3,6 +3,12 @@
 #the output should be a list of the appropriate "output" format (defined in the README)
 library(elasticnet)
 
+#performs elastic net with K-fold CV using package "elasticnet"
+#inputs:
+#input: a matrix with the first column being the y values
+#args: a list with elements "nfolds" for the number of folds used in CV, and "lambda" for the grid of lambda values used for one of the dimensions in two-fold CV
+#
+#returns the estimated coefficients beta
 enet.wrapper.enet = function(input,args){
     nfolds=args$nfolds
     lambda=args$lambda

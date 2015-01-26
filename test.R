@@ -57,10 +57,23 @@ score = function(data, output){
   return(mean((data$meta$testset[,-1]%*%(data$meta$betatrue-output))^2))
 }
 
+
+
 res=run_dsc(scenarios,methods,score)
 
 aggregate(results~method+scenario,res,median)
 
-tt=datamaker(22,list(n=240,trainsize=40,p=8,betatrue=c(3,1.5,0,0,2,0,0,0),sigma=3,xcov=0.5^(abs(outer(1:8,1:8,"-")))))
-zz=lasso.wrapper.enet(tt$input,list(nfolds=10,lambda=c(0,0.1,1,10,100)))
+tt=datamaker(50,list(n=600,trainsize=200,p=40,betatrue=c(rep(0,10),rep(2,10),rep(0,10),rep(2,10)),sigma=15,xcov=matrix(0.5,40,40)+diag(0.5,40)))
+zz=enet.naive.wrapper.enet(tt$input,list(nfolds=10,lambda=c(0,0.1,1,10,100)))
+score(tt,zz)
+
+
+
+#using xiang's code
+score = function(data, output){
+  return(mean((data$meta$Xtestt%*%(data$meta$mybeta-output))^2))
+}
+
+tt=datamaker(50,list(Ntestt=400,Ntrain=100,Nvalid=100,mybeta=c(rep(0,10),rep(2,10),rep(0,10),rep(2,10)),resstd=15,design="eqlcorr"))
+zz=enet.naive.wrapper.enet(cbind(tt$input$Ytrain,tt$input$Xtrain),list(nfolds=10,lambda=c(0,0.1,1,10,100)))
 score(tt,zz)
