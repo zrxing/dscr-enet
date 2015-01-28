@@ -7,7 +7,7 @@ For a general introduction to DSCs, see [here](https://github.com/stephens999/ds
 
 In this simulation study, we aim to compare several methods for fitting a linear model of the form Y=XB+e, where y is a n by 1 vector of responses, X is a n by p matrix of predictors, B is a p by 1 vector of unknown coefficients and e is a n by 1 vector of iid Gaussian noise. Although the problem as described is a generic one, the methods in this study aim to provide some level of variable selection, and the vector B typically contains a substantial number of zeroes. 
 
-The simulation schemes all contain a training set and a test set. The models are trained on the training set and an estimated vector of coefficients Bhat is returned. The performance of a method is then determined by the quantity E((X*Bhat-X*B)^2), where X* are the predictors in the test set.
+The simulation schemes all contain a training set and a test set. The models are trained on the training set and an estimated vector of coefficients Bhat is returned. The performance of a method is then determined by the quantity E((X* Bhat-X* B)^2), where X* are the predictors in the test set.
 
 # Input, meta and output formats
 
@@ -23,7 +23,7 @@ This DSC uses the following formats:
 
 # Scores
 
-The performance of a method is scored by the quantity median(Ehat((X*Bhat-X*B)^2)). Here X* are the predictors in the test set, Ehat denotes the sample average, and the median is computed over all runs of a given simulation scheme (ie different seeds).
+The performance of a method is scored by the quantity median(Ehat((X* Bhat-X* B)^2)). Here X* are the predictors in the test set, Ehat denotes the sample average, and the median is computed over all runs of a given simulation scheme (ie different seeds).
 
 See [score.R](score.R).
 
