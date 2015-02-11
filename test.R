@@ -67,6 +67,7 @@ tt=datamaker(50,list(n=600,trainsize=200,p=40,betatrue=c(rep(0,10),rep(2,10),rep
 zz=enet.naive.wrapper.enet(tt$input,list(nfolds=10,lambda=c(0,0.1,1,10,100)))
 score(tt,zz)
 
+reset_method(enet)
 
 
 #using xiang's code
